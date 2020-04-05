@@ -16,7 +16,6 @@ public class ResultService {
 	private ResultRepository resultRepository;
 	
 	public List<Result> findResults() {
-		// TODO Auto-generated method stub
 		return resultRepository.findAll();
 	}
 
@@ -40,6 +39,14 @@ public class ResultService {
 			return result;
 		}
 		return null;
+	}
+
+	public List<Result> findResultByName(String studentName) {
+		return resultRepository.findByStudentName(studentName);
+	}
+
+	public List<Result> findResultByStandardStudentName(int standard, String studentName) {
+		return resultRepository.findByStandardAndStudentName(standard, studentName);
 	}
 	
 }

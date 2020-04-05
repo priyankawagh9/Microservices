@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.microservices.spring.eurekaClient.model.Result;
@@ -32,8 +33,13 @@ public class StudentResultController {
 	}
 	
 	@GetMapping("/getResult/{id}")
-	public Optional<Result> getResultsById(@PathVariable int studentId) {
+	public Optional<Result> getResultsById(@PathVariable("id") int studentId) {
 		return resultService.findResultsById(studentId);
+	}
+	
+	@GetMapping("/getResultByName/{name}")
+	public List<Result> getResultByName(@PathVariable("name")String studentName) {
+		return resultService.findResultByName(studentName);
 	}
 	
 	@PutMapping("/updateResult")
@@ -42,8 +48,14 @@ public class StudentResultController {
 	}
 	
 	@DeleteMapping("/deleteResult/{id}")
-	public Optional<Result> deleteResults(@PathVariable int studentId) {
+	public Optional<Result> deleteResults(@PathVariable("id") int studentId) {
 		return resultService.delete(studentId);
+	}
+	
+	@GetMapping("/getResultForStandardAndStudentName")
+	public List<Result> getResultForStandardAndStudentName(@RequestParam("standard") int standard,
+															@RequestParam("studentName") String studentName) {
+		return resultService.findResultByStandardStudentName(standard, studentName);
 	}
 	
 }

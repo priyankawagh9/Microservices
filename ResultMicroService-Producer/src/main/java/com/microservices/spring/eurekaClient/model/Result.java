@@ -19,7 +19,7 @@ public class Result {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int studentId;
 	int standard;
-	String StudentName;
+	String studentName;
 	int physicsMarks;
 	int chemistryMarks;
 	int mathsMarks;
